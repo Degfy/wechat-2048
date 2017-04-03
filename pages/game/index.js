@@ -28,12 +28,13 @@ Page({
     cellWidth: 0,
     ani: [],
     cells: [],
+    score: 0,
   },
 
   onLoad() {
     const success = info => {
       let { windowWidth, windowHeight } = info,
-      upWrapHeight = windowHeight - windowWidth - 20
+      upWrapHeight = Math.min(windowHeight - windowWidth - 20, 140)
 
       windowWidth -= 24
 
@@ -88,14 +89,16 @@ Page({
 
     let direct = getDirect(this.pointA.x - this.pointB.x, this.pointA.y - this.pointB.y)
 
-    const [ani_1, ani_1_2, ani_2] = this._matrix.Action(direct, {
-      duration: 80,
-    }, {
-      duration: 30,
-    })
+    const [ani_1, ani_1_2, ani_2, scoreAdd] = this._matrix.Action(direct, {
+        duration: 80,
+      }, {
+        duration: 30,
+      }),
+      score = this.data.score + scoreAdd
 
     this.setData({
       ani: ani_1,
+      score,
     })
 
     setTimeout(() => {
@@ -116,5 +119,10 @@ Page({
         })
       }, 30)
     }, 80)
-  }
+  },
+  ReStart(evt) {
+    this.setData({
+      matrix: this._matrix.Reset(),
+    })
+  },
 })

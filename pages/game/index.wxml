@@ -1,7 +1,13 @@
 <!--index.wxml-->
 <view class="game-container">
   <view class="action-panel" style="height:{{upWrapHeight}}px;">
-    this is a test
+    <view class="left" style="width:{{windowWidth - upWrapHeight -10}}px;height:{{upWrapHeight}}px;">
+      <text class="label">我的得分</text>
+      <text class="score">{{score}}</text>
+    </view>
+    <view class="right" style="width:{{upWrapHeight}}px;height:{{upWrapHeight}}px;">
+      <button class="btn" bindtap="ReStart">重新开始</button>
+    </view>
   </view>
   <view class="border" style="height:{{windowWidth}}px;width:{{windowWidth}}px;">
     <view class="sqr-wrap" style="height:{{windowWidth}}px;width:{{windowWidth}}px;" bindtouchstart="TouchStart" bindtouchend="TouchEnd">

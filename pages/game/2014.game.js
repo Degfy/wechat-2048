@@ -74,9 +74,9 @@ Game.prototype = {
         random = Math.random(),
         value = 2
 
-      if (random > 0.6) {
+      if (random > 0.8) {
         value = 4
-        if (value > 0.9) {
+        if (value > 0.96) {
           value = 8
         }
       }
@@ -96,15 +96,13 @@ Game.prototype = {
     let animation1 = wx.createAnimation(step1_opts),
       animation1_2 = wx.createAnimation({ duration: 0 }),
       animation2 = wx.createAnimation(step2_opts),
-
       size = this._size,
       cellWidth = this._cellWidth,
-
       ani_m_1 = clone(this._blankAni),
       ani_m_1_2 = clone(this._blankAni),
       ani_m_2 = clone(this._blankAni),
-
-      isValid = false
+      isValid = false,
+      score = 0
 
     animation1_2.translate3d(0, 0, 0).scale3d(.1, .1, .1).opacity(.4).step()
     animation2.scale3d(1, 1, 1).opacity(1).step()
@@ -113,6 +111,7 @@ Game.prototype = {
       animation_element_gen = animation2.export()
 
     function merge(get, set, fn) {
+      let score = 0
       for (let i = 0; i < size; i++) {
         let valueI = get(i)
         for (let j = i + 1; j < size; j++) {
@@ -131,18 +130,20 @@ Game.prototype = {
                 set(j, 0)
                 fn(i, j, true)
                 isValid = true
+                score += valueJ * 2
               }
               break
             }
           }
         }
       }
+      return score
     }
 
     switch (direct) {
       case 'left':
         for (let r = 0; r < size; r++) {
-          merge(index => {
+          score = merge(index => {
             return this._matrix[r][index]
           }, (index, value) => {
             return this._matrix[r][index] = value
@@ -159,7 +160,7 @@ Game.prototype = {
         break
       case 'right':
         for (let r = 0; r < size; r++) {
-          merge(index => {
+          score = merge(index => {
             return this._matrix[r][size - index - 1]
           }, (index, value) => {
             return this._matrix[r][size - index - 1] = value
@@ -176,7 +177,7 @@ Game.prototype = {
         break
       case 'up':
         for (let c = 0; c < size; c++) {
-          merge(index => {
+          score = merge(index => {
             return this._matrix[index][c]
           }, (index, value) => {
             return this._matrix[index][c] = value
@@ -193,7 +194,7 @@ Game.prototype = {
         break
       case 'down':
         for (let c = 0; c < size; c++) {
-          merge(index => {
+          score = merge(index => {
             return this._matrix[size - index - 1][c]
           }, (index, value) => {
             return this._matrix[size - index - 1][c] = value
@@ -215,11 +216,20 @@ Game.prototype = {
         ani_m_1_2[r][c] = animation_reset
       })
     }
-    return [ani_m_1, ani_m_1_2, ani_m_2]
+    return [ani_m_1, ani_m_1_2, ani_m_2, score]
   },
 
   Reset() {
-
+    let size = this._size,
+      i = size
+    while (i--) {
+      let j = size
+      while (j--) {
+        this._matrix[i][j] = 0
+      }
+    }
+    this.Add()
+    return this._matrix
   },
 }
 
