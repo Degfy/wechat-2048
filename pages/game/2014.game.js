@@ -117,6 +117,7 @@ Game.prototype = {
         let valueI = get(i)
         for (let j = i + 1; j < size; j++) {
           let valueJ = get(j)
+
           if (valueJ > 0) {
             if (valueI === 0) {
               valueI = set(i, valueJ)
@@ -124,13 +125,13 @@ Game.prototype = {
               fn(i, j, false)
               isValid = true
               continue
-            }
-
-            if (valueI === valueJ) {
-              set(i, valueJ * 2)
-              set(j, 0)
-              fn(i, j, true)
-              isValid = true
+            } else {
+              if (valueI === valueJ) {
+                set(i, valueJ * 2)
+                set(j, 0)
+                fn(i, j, true)
+                isValid = true
+              }
               break
             }
           }
@@ -151,8 +152,7 @@ Game.prototype = {
 
             if (merged) {
               ani_m_1_2[r][i] = animation_reset
-                // animation2.scale3d(1, 1, 1).step()
-              ani_m_2[r][i] = animation_element_gen //animation2.export()
+              ani_m_2[r][i] = animation_element_gen
             }
           })
         }
@@ -169,8 +169,7 @@ Game.prototype = {
 
             if (merged) {
               ani_m_1_2[r][size - i - 1] = animation_reset
-                // animation2.scale3d(1, 1, 1).step()
-              ani_m_2[r][size - i - 1] = animation_element_gen // animation2.export()
+              ani_m_2[r][size - i - 1] = animation_element_gen
             }
           })
         }
@@ -187,8 +186,7 @@ Game.prototype = {
 
             if (merged) {
               ani_m_1_2[i][c] = animation_reset
-                // animation2.scale3d(1, 1, 1).step()
-              ani_m_2[i][c] = animation_element_gen // animation2.export()
+              ani_m_2[i][c] = animation_element_gen
             }
           })
         }
@@ -205,8 +203,7 @@ Game.prototype = {
 
             if (merged) {
               ani_m_1_2[size - i - 1][c] = animation_reset
-                // animation2.scale3d(1, 1, 1).step()
-              ani_m_2[size - i - 1][c] = animation_element_gen // animation2.export()
+              ani_m_2[size - i - 1][c] = animation_element_gen
             }
           })
         }
@@ -214,8 +211,7 @@ Game.prototype = {
     }
     if (isValid) {
       this.Add((r, c) => {
-        //animation2.scale3d(1, 1, 1).step()
-        ani_m_2[r][c] = animation_element_gen // animation2.export()
+        ani_m_2[r][c] = animation_element_gen
         ani_m_1_2[r][c] = animation_reset
       })
     }

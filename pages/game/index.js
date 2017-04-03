@@ -84,9 +84,9 @@ Page({
     let direct = getDirect(this.pointA.x - this.pointB.x, this.pointA.y - this.pointB.y)
 
     const [ani_1, ani_1_2, ani_2] = this._matrix.Action(direct, {
-      duration: 100,
+      duration: 80,
     }, {
-      duration: 50,
+      duration: 30,
     })
 
     this.setData({
@@ -109,7 +109,7 @@ Page({
         this.setData({
           ani: this._matrix.BlankAni,
         })
-      }, 50)
-    }, 100)
+      }, 30)
+    }, 80)
   }
 })

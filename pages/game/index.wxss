@@ -82,20 +82,42 @@
   background: #F4EAA3 !important;
 }
 
-.cell-128 {}
+.cell-128 {
+  background: #D4FB79 !important;
+}
 
-.cell-512 {}
+.cell-256 {
+  background: #5CD6D8 !important;
+}
 
-.cell-1024 {}
+.cell-512 {
+  background: #FFFB78 !important;
+}
 
-.cell-2048 {}
+.cell-1024 {
+  background: #00FA92 !important;
+}
 
-.cell-4096 {}
+.cell-2048 {
+  background: #FF9300 !important;
+}
 
-.cell-8192 {}
+.cell-4096 {
+  background: #008F00 !important;
+}
 
-.cell-16384 {}
+.cell-8192 {
+  background: #76D6FF !important;
+}
 
-.cell-32768 {}
+.cell-16384 {
+  background: #942193 !important;
+}
 
-.cell-65536 {}
+.cell-32768 {
+  background: #009051 !important;
+}
+
+.cell-65536 {
+  background: #941100 !important;
+}
