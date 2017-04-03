@@ -22,18 +22,22 @@ function getDirect(x, y) {
 }
 Page({
   data: {
+    upWrapHeight: 0,
     matrix: [],
     windowWidth: 0,
     cellWidth: 0,
     ani: [],
-    css: [],
     cells: [],
   },
 
   onLoad() {
     const success = info => {
+      let { windowWidth, windowHeight } = info,
+      upWrapHeight = windowHeight - windowWidth - 20
+
+      windowWidth -= 24
+
       const cellWidth = (1 / matrixSize) * 100,
-        { windowWidth } = info,
         _matrix = new Game(matrixSize, windowWidth),
         matrix = _matrix.Value,
         ani = _matrix.BlankAni,
@@ -56,6 +60,7 @@ Page({
       }
 
       this.setData({
+        upWrapHeight,
         matrix,
         windowWidth,
         cellWidth,

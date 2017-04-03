@@ -216,7 +216,11 @@ Game.prototype = {
       })
     }
     return [ani_m_1, ani_m_1_2, ani_m_2]
-  }
+  },
+
+  Reset() {
+
+  },
 }
 
 
