@@ -142,7 +142,7 @@ Game.prototype = {
     switch (direct) {
       case 'left':
         for (let r = 0; r < size; r++) {
-          score = merge(index => {
+          score += merge(index => {
             return this._matrix[r][index]
           }, (index, value) => {
             return this._matrix[r][index] = value
@@ -159,7 +159,7 @@ Game.prototype = {
         break
       case 'right':
         for (let r = 0; r < size; r++) {
-          score = merge(index => {
+          score += merge(index => {
             return this._matrix[r][size - index - 1]
           }, (index, value) => {
             return this._matrix[r][size - index - 1] = value
@@ -176,7 +176,7 @@ Game.prototype = {
         break
       case 'up':
         for (let c = 0; c < size; c++) {
-          score = merge(index => {
+          score += merge(index => {
             return this._matrix[index][c]
           }, (index, value) => {
             return this._matrix[index][c] = value
@@ -193,7 +193,7 @@ Game.prototype = {
         break
       case 'down':
         for (let c = 0; c < size; c++) {
-          score = merge(index => {
+          score += merge(index => {
             return this._matrix[size - index - 1][c]
           }, (index, value) => {
             return this._matrix[size - index - 1][c] = value
@@ -209,6 +209,7 @@ Game.prototype = {
         }
         break
     }
+
     if (isValid) {
       this.Add((r, c) => {
         ani_m_2[r][c] = animation_element_gen

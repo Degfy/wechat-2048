@@ -96,6 +96,8 @@ Page({
       }, app.globalData),
       score = this.data.score + scoreAdd
 
+    console.log(scoreAdd)
+
     this.setData({
       ani: ani_1,
       score,
