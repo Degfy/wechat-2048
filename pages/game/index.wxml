@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="game-container">
+  <view class="sqr-wrap" style="height:{{windowWidth}}px;" bindtouchstart="TouchStart" bindtouchend="TouchEnd">
+    <view class="cell" wx:for="{{cells}}" wx:key="index" wx:for-item="cell" wx:for-index="c" style="width:{{cellWidth}}%;height: {{cellWidth}}%;left:{{cell.c*cellWidth}}%;top:{{cell.r*cellWidth}}%;">
+      <view class="placeholder">
+        <view class="true-cell cell-{{matrix[cell.r][cell.c]}}" animation="{{ani[cell.r][cell.c]}}" style="{{css[cell.r][cell.c]}}">
+          <view class="number">
+            {{matrix[cell.r][cell.c] || ''}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

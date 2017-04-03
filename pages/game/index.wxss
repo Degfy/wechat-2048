@@ -1,0 +1,101 @@
+.game-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #F8F1E9;
+}
+
+.game-container .sqr-wrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #BAADA4;
+}
+
+
+/*.game-container .rows {}*/
+
+.game-container .cell {
+  position: absolute;
+  float: left;
+  display: block;
+  background: #B9AD9F;
+  border: 2px solid #B9AD9F;
+  box-sizing: border-box;
+}
+
+.game-container .cell .placeholder {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #CBBFB1;
+}
+
+.game-container .cell .true-cell {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.number {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: #000;
+}
+
+.cell-2 {
+  background: #F3DBAF !important;
+}
+
+.cell-4 {
+  background: #EFAE74 !important;
+}
+
+.cell-8 {
+  background: #EE8E51 !important;
+}
+
+.cell-16 {
+  background: #F57900 !important;
+}
+
+.cell-32 {
+  background: #DCC315 !important;
+}
+
+.cell-64 {
+  background: #F4EAA3 !important;
+}
+
+.cell-128 {}
+
+.cell-512 {}
+
+.cell-1024 {}
+
+.cell-2048 {}
+
+.cell-4096 {}
+
+.cell-8192 {}
+
+.cell-16384 {}
+
+.cell-32768 {}
+
+.cell-65536 {}
