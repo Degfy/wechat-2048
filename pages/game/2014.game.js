@@ -38,7 +38,6 @@ function Game(size, panelWidth) {
 
 function noop() {}
 
-
 Game.prototype = {
   get Value() {
     return this._matrix
@@ -92,7 +91,7 @@ Game.prototype = {
    * @Author   degfy@sina.com
    * @DateTime 2017-04-03T10:27:07+0800
    */
-  Action(direct, step1_opts, step2_opts) {
+  Action(direct, step1_opts, step2_opts, voice) {
     let animation1 = wx.createAnimation(step1_opts),
       animation1_2 = wx.createAnimation({ duration: 0 }),
       animation2 = wx.createAnimation(step2_opts),
@@ -215,6 +214,23 @@ Game.prototype = {
         ani_m_2[r][c] = animation_element_gen
         ani_m_1_2[r][c] = animation_reset
       })
+
+      let filePath
+      if (score) {
+        filePath = voice.merge
+      } else {
+        filePath = voice.move
+      }
+
+      if (filePath) {
+        wx.stopVoice()
+        wx.playVoice({
+          filePath,
+          complete(res) {
+            console.log(res)
+          }
+        })
+      }
     }
     return [ani_m_1, ani_m_1_2, ani_m_2, score]
   },

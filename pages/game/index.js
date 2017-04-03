@@ -93,7 +93,7 @@ Page({
         duration: 80,
       }, {
         duration: 30,
-      }),
+      }, app.globalData),
       score = this.data.score + scoreAdd
 
     this.setData({
