@@ -216,21 +216,20 @@ Game.prototype = {
         ani_m_1_2[r][c] = animation_reset
       })
 
-      let filePath
-      if (score) {
-        filePath = voice.merge
-      } else {
-        filePath = voice.move
-      }
+      if (voice) {
+        let filePath
+        if (score) {
+          filePath = voice.merge
+        } else {
+          filePath = voice.move
+        }
 
-      if (filePath) {
-        wx.stopVoice()
-        wx.playVoice({
-          filePath,
-          complete(res) {
-            console.log(res)
-          }
-        })
+        if (filePath) {
+          wx.stopVoice()
+          wx.playVoice({
+            filePath,
+          })
+        }
       }
     }
     return [ani_m_1, ani_m_1_2, ani_m_2, score]

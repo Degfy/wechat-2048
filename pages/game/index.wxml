@@ -6,7 +6,11 @@
       <text class="score">{{score}}</text>
     </view>
     <view class="right" style="width:{{upWrapHeight}}px;height:{{upWrapHeight}}px;">
-      <button class="btn" bindtap="ReStart">重新开始</button>
+      <button class="btn" bindtap="ReStart" style="{{btnFontSize}}">重新开始</button>
+      <view class="icons">
+        <text class="icon icon-{{soundCss}}" bindtap="SoundSwitch"></text>
+        <text class="icon icon-setting" bindtap="Setting"></text>
+      </view>
     </view>
   </view>
   <view class="border" style="height:{{windowWidth}}px;width:{{windowWidth}}px;">
@@ -19,6 +23,17 @@
             </view>
           </view>
         </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{showSetting}}" class="popout-wrap">
+    <view class="mask" bindtap="SettingClose">
+    </view>
+    <view class="pop-content">
+      <view class="icon icon-close" bindtap="SettingClose"></view>
+      <view>
+        <button bindtap="ChooseMod" data-mode="5"> 5 * 5 </button>
+        <button bindtap="ChooseMod" data-mode="4"> 4 * 4 </button>
       </view>
     </view>
   </view>

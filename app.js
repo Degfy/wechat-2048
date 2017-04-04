@@ -8,7 +8,6 @@ App({
         if (res.tempFilePath) {
           that.globalData.merge = res.tempFilePath
         }
-        console.log(res)
       }
     })
 
@@ -18,7 +17,6 @@ App({
         if (res.tempFilePath) {
           that.globalData.move = res.tempFilePath
         }
-        console.log(res)
       }
     })
   },

@@ -29,12 +29,20 @@ Page({
     ani: [],
     cells: [],
     score: 0,
+    btnFontSize: '',
+    soundCss: 'sound',
+    showSetting: false,
   },
 
   onLoad() {
     const success = info => {
       let { windowWidth, windowHeight } = info,
-      upWrapHeight = Math.min(windowHeight - windowWidth - 20, 140)
+      upWrapHeight = Math.min(windowHeight - windowWidth - 20, 140),
+        btnFontSize = ''
+
+      if (upWrapHeight < 120) {
+        btnFontSize = 'font-size:12px;'
+      }
 
       windowWidth -= 24
 
@@ -68,6 +76,7 @@ Page({
         ani,
         css,
         cells,
+        btnFontSize,
       })
     }
     wx.getSystemInfo({ success })
@@ -87,16 +96,17 @@ Page({
       y: clientY,
     }
 
-    let direct = getDirect(this.pointA.x - this.pointB.x, this.pointA.y - this.pointB.y)
+    let direct = getDirect(this.pointA.x - this.pointB.x, this.pointA.y - this.pointB.y),
+      hasSound = this.data.soundCss === 'sound' ? app.globalData : null
+
+
 
     const [ani_1, ani_1_2, ani_2, scoreAdd] = this._matrix.Action(direct, {
         duration: 80,
       }, {
         duration: 30,
-      }, app.globalData),
+      }, hasSound),
       score = this.data.score + scoreAdd
-
-    console.log(scoreAdd)
 
     this.setData({
       ani: ani_1,
@@ -127,4 +137,36 @@ Page({
       matrix: this._matrix.Reset(),
     })
   },
+
+  SoundSwitch() {
+    let soundCss = ''
+    switch (this.data.soundCss) {
+      case 'sound':
+        soundCss = 'silence'
+        break
+      case 'silence':
+        soundCss = 'sound'
+        break
+    }
+
+    this.setData({
+      soundCss,
+    })
+  },
+
+  Setting() {
+    this.setData({
+      showSetting: true,
+    })
+  },
+
+  SettingClose() {
+    this.setData({
+      showSetting: false,
+    })
+  },
+
+  ChooseMod(evt) {
+    console.log(evt)
+  }
 })
