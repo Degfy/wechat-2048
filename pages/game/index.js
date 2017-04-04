@@ -20,8 +20,10 @@ function getDirect(x, y) {
     }
   }
 }
+
 Page({
   data: {
+    mode: matrixSize,
     upWrapHeight: 0,
     matrix: [],
     windowWidth: 0,
@@ -135,6 +137,7 @@ Page({
   ReStart(evt) {
     this.setData({
       matrix: this._matrix.Reset(),
+      score: 0,
     })
   },
 
@@ -167,6 +170,34 @@ Page({
   },
 
   ChooseMod(evt) {
-    console.log(evt)
+    const mode = evt.target.dataset.mode
+    if (mode !== this.data.mode) {
+      const matrix = this._matrix.SetMode(mode)
+      let cells = [],
+        index = 0,
+        cellWidth = (1 / mode) * 100
+      for (let i = 0; i < mode; i++) {
+        for (let j = 0; j < mode; j++) {
+          cells.push({
+            index,
+            r: i,
+            c: j,
+          })
+          index++
+        }
+      }
+
+      this.setData({
+        cells,
+        mode,
+        cellWidth,
+        matrix,
+        showSetting: false,
+        ani: this._matrix.BlankAni,
+        score: 0,
+      })
+    } else {
+      this.SettingClose()
+    }
   }
 })

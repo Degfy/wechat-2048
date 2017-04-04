@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="score-btns">
+    <view class="score" style="width:{{windowWidth - 140 - 30}}px;">
+      <text class="label">我的得分</text>
+      <text class="value">{{score}}</text>
+    </view>
+    <view class="btns">
+      <view class="rounds">
+        <text class="icon icon-{{playSound?'sound':'silence'}} left" bindtap="SoundSwitch"></text>
+        <text class="icon icon-setting" bindtap="ShowSetting"></text>
+      </view>
+      <button class="btn-reset">重新开始</button>
+    </view>
+  </view>
+  <view class="game-wrap" style="width:{{gameWidth}}px;height:{{gameWidth}}px;">
+    <view class="game-container" catchtouchstart="TouchStart" catchtouchend="TouchEnd">
+      <view class="cell-grid" wx:for="{{cells}}" wx:key="index" wx:for-item="cell" wx:for-index="c" style="width:{{cellSize}}%;height: {{cellSize}}%;left:{{cell.c*cellSize}}%;top:{{cell.r*cellSize}}%;">
+        <view class="cell-wrap">
+          <view class="cell cell-{{matrix[cell.r][cell.c]}}" animation="{{ani[cell.r][cell.c]}}">
+            <view class="number">
+              {{matrix[cell.r][cell.c] || ''}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 弹出层 -->
+  <view class="popout" wx:if="{{showSetting}}">
+    <view class="mask" bindtap="HideSetting"></view>
+    <view class="content">
+      <view class="icon icon-close" bindtap="HideSetting"></view>
+      <view class="set-list">
+        <button bindtap="ChooseMod" data-mode="4"> 4 * 4 </button>
+        <button bindtap="ChooseMod" data-mode="5"> 5 * 5 </button>
+        <button bindtap="ChooseMod" data-mode="6"> 6 * 6 </button>
+      </view>
+    </view>
+  </view>
+</view>

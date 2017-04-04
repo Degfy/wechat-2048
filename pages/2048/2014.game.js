@@ -1,15 +1,24 @@
 // 2014.game.js
 const clone = require('./clone.js')
 
+function noop() {}
+
 function Game(size, panelWidth) {
   if (!(this instanceof Game)) {
     return new Game(size, panelWidth)
   }
   this._panelWidth = panelWidth
-  this._init(size)
+    // this._init(size)
 }
 
-function noop() {}
+Game.Reload = function({ panelWidth, matrix, size }) {
+  let game = new Game(size, panelWidth)
+  game._init(size)
+  game._matrix = matrix
+  return game
+}
+
+
 
 Game.prototype = {
   get Value() {
@@ -249,6 +258,7 @@ Game.prototype = {
     this.Add()
     return this._matrix
   },
+
 }
 
 
