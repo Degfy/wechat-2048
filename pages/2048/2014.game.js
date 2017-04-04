@@ -228,11 +228,14 @@ Game.prototype = {
         } else {
           filePath = voice.move
         }
-
+        // console.log(voice)
         if (filePath) {
           wx.stopVoice()
           wx.playVoice({
             filePath,
+            // complete(res) {
+            //   console.log(res)
+            // }
           })
         }
       }

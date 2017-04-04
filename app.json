@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/game/index"
+    "pages/2048/index"
   ],
   "window": {
     "backgroundTextStyle": "center",

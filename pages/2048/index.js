@@ -128,7 +128,7 @@ Page({
     }
 
     let direct = getDirect(this.pointA.x - this.pointB.x, this.pointA.y - this.pointB.y),
-      hasSound = this.data.soundCss === 'sound' ? app.globalData : null
+      hasSound = this.data.playSound ? app.globalData : null
 
 
 
