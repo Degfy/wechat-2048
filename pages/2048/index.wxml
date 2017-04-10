@@ -9,7 +9,7 @@
         <text class="icon icon-{{playSound?'sound':'silence'}} left" bindtap="SoundSwitch"></text>
         <text class="icon icon-setting" bindtap="ShowSetting"></text>
       </view>
-      <button class="btn-reset">重新开始</button>
+      <button class="btn-reset" bindtap="Reset">重新开始</button>
     </view>
   </view>
   <view class="game-wrap" style="width:{{gameWidth}}px;height:{{gameWidth}}px;">

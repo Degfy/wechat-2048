@@ -172,6 +172,13 @@ Page({
       this.HideSetting()
     }
   },
+  Reset() {
+    let matrix = this._game.Reset()
+    this.setData({
+      matrix,
+      score: 0,
+    })
+  },
 
   _save() {
     wx.setStorage({ key: GAME_DATA_SAVE_KEY, data: this.data })

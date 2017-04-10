@@ -78,9 +78,9 @@ Game.prototype = {
         random = Math.random(),
         value = 2
 
-      if (random > 0.8) {
+      if (random > 0.84) {
         value = 4
-        if (value > 0.96) {
+        if (random > 0.95) {
           value = 8
         }
       }
